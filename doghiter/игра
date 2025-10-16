@@ -1,0 +1,48 @@
+Random random = new Random();
+bool playAgain = true;
+do
+{
+    int secretNumber = random.Next(1, 101); 
+    int attempts = 7;
+    int attemptsMade = 0;
+    bool hasGuessed = false;
+
+    Console.WriteLine("--- Новая игра ---");
+    Console.WriteLine($"Я загадал число от 1 до 100. У тебя есть {attempts} попыток, чтобы его угадать.");
+    while (attemptsMade < attempts && !hasGuessed)
+    {
+        Console.Write($"Осталось попыток: {attempts - attemptsMade}. Введите ваше число: ");
+        string input = Console.ReadLine();
+        int.TryParse(input, out int userGuess);
+
+        if (userGuess < secretNumber)
+        {
+            Console.WriteLine("Слишком мало!");
+        }
+        else if (userGuess > secretNumber)
+        {
+            Console.WriteLine("Слишком много!");
+        }
+        else
+        {
+            hasGuessed = true;
+            Console.WriteLine("Поздравляю! Вы угадали число!");
+        }
+        attemptsMade++;
+    }
+    if (!hasGuessed)
+    {
+        Console.WriteLine($"Вы проиграли. Загаданное число было: {secretNumber}");
+    }
+    Console.Write("Хотите сыграть еще раз? (да/нет): ");
+    string response = Console.ReadLine().ToLower();
+    if (response != "да" && response != "yes")
+    {
+        playAgain = false;
+    }
+
+} while (playAgain);
+
+Console.WriteLine("Игра завершена. Нажмите Enter для выхода.");
+Console.ReadLine();
+
