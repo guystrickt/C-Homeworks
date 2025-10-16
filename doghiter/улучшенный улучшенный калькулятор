@@ -1,67 +1,79 @@
+using System.Globalization;
+
 class Program
 {
     static void Main(string[] args)
     {
-        if (!TryGetNumber("Введите первое число:", out double num1))
+        double num1 = GetNumberFromUser("Введите первое число:");
+        if (double.IsNaN(num1))
         {
             return;
         }
 
-        if (!TryGetNumber("Введите второе число:", out double num2))
+        double num2 = GetNumberFromUser("Введите второе число:");
+        if (double.IsNaN(num2))
         {
             return;
         }
 
-        if (!TryGetOperation("Введите знак операции (+, -, *, /):", out string operation))
+        string operation = GetOperationFromUser("Введите знак операции (+, -, *, /):");
+        if (string.IsNullOrEmpty(operation))
         {
             return;
         }
-        if (PerformCalculation(num1, num2, operation, out double result))
+        var result = PerformCalculation(num1, num2, operation);
+
+        if (result.HasValue)
         {
             Console.WriteLine($"Результат: {result}");
         }
     }
-    private static bool TryGetNumber(string prompt, out double number)
+    private static double GetNumberFromUser(string prompt)
     {
         Console.Write(prompt);
-        return double.TryParse(Console.ReadLine(), out number);
+        try
+        {
+            return Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Ошибка: введено не число!");
+            return double.NaN;
+        }
     }
-    private static bool TryGetOperation(string prompt, out string operation)
+    private static string GetOperationFromUser(string prompt)
     {
         Console.Write(prompt);
-        operation = Console.ReadLine();
-        return operation == "+" || operation == "-" || operation == "*" || operation == "/";
+        string operation = Console.ReadLine();
+        if (operation == "+" || operation == "-" || operation == "*" || operation == "/")
+        {
+            return operation;
+        }
+        else
+        {
+            Console.WriteLine("Ошибка: неверный знак операции!");
+            return null;
+        }
     }
-
-    private static bool PerformCalculation(double num1, double num2, string operation, out double result)
+    private static double? PerformCalculation(double num1, double num2, string operation)
     {
-        result = 0;
         switch (operation)
         {
             case "+":
-                result = num1 + num2;
-                break;
+                return num1 + num2;
             case "-":
-                result = num1 - num2;
-                break;
+                return num1 - num2;
             case "*":
-                result = num1 * num2;
-                break;
+                return num1 * num2;
             case "/":
-                if (num2 != 0)
-                {
-                    result = num1 / num2;
-                }
-                else
+                if (num2 == 0)
                 {
                     Console.WriteLine("Ошибка: деление на ноль!");
-                    return false;
+                    return null;
                 }
-                break;
+                return num1 / num2;
             default:
-                Console.WriteLine("Ошибка: неверный знак операции!");
-                return false;
+                return null;
         }
-        return true;
     }
 }
