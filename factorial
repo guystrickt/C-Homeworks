@@ -1,0 +1,36 @@
+public class FactorialCalculator
+{
+    public static long CalculateFactorial(int n)
+    {
+        
+        long factorial = 1;
+        for (int i = 1; i <= n; i++)
+        {
+            factorial *= i;
+        }
+        return factorial;
+    }
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("--- Калькулятор факториала ---");
+        Console.Write("Введите число: ");
+        string input = Console.ReadLine();
+        if (int.TryParse(input, out int n))
+        {
+            if (n > 0)
+            {
+                long result = CalculateFactorial(n);
+                Console.WriteLine($"Факториал числа {n} равен {result}");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: факториал можно вычислить только для чисел блльше 0");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Ошибка: введите целое число.");
+        }
+    }
+}
+
