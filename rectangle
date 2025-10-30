@@ -1,0 +1,80 @@
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("--- Создаем корректный прямоугольник ---");
+        Rectangle rect1 = new Rectangle(10, 5);
+
+        Console.WriteLine($"Ширина: {rect1.Width}");
+        Console.WriteLine($"Высота: {rect1.Height}");
+        Console.WriteLine($"Площадь: {rect1.GetArea()}");
+        Console.WriteLine($"Периметр: {rect1.GetPerimeter()}");
+
+        Console.WriteLine("--- Попытка создать некорректный прямоугольник ---");
+        Rectangle rect2 = new Rectangle(-10, 0);
+        Console.WriteLine($"Ширина rect2: {rect2.Width}"); 
+        Console.WriteLine($"Высота rect2: {rect2.Height}"); 
+
+        Console.WriteLine("--- Попытка изменить свойство на некорректное значение ---");
+        rect1.Width = -20;
+        Console.WriteLine($"Новая ширина rect1 после попытки изменения: {rect1.Width}");
+
+        Console.ReadLine();
+    }
+}
+public class Rectangle
+{
+    private double _width;
+    private double _height;
+    public double Width
+    {
+        get
+        {
+            return _width;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                _width = value;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка. Введите число больше 0");
+            }
+        }
+    }
+    public double Height
+    {
+        get
+        {
+            return _height;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                _height = value;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка. Введитте число больше 0");
+            }
+        }
+    }
+
+    public Rectangle(double width, double height)
+    {
+
+        Width = width;
+        Height = height;
+    }
+    public double GetArea()
+    {
+        return _width * _height;
+    }
+    public double GetPerimeter()
+    {
+        return 2 * (_width + _height);
+    }
+}
