@@ -1,14 +1,95 @@
-﻿Console.WriteLine("---Калькулятор Индекса Массы Тела(ИМТ)---");
-Console.WriteLine("Введите ваш вес в кг:");
+﻿Console.WriteLine("введите первое число:");
 string firstInput = Console.ReadLine();
-double firstNumber = Convert.ToDouble(firstInput);
-Console.WriteLine("Введите ваш рост в метрах (например 1.75)");
-string secondInput = Console.ReadLine();
-    double secondNumber = Convert.ToDouble(secondInput);
-double quotient = firstNumber / (secondNumber * secondNumber);
-Console.WriteLine("---Ваш результат---");
-Console.WriteLine($"{firstNumber} / ({secondNumber} * {secondNumber}) = {quotient}");
-Console.ReadLine();
+
+
+
+
+
+
+
+
+
+
+Console.Write("Введите операцию (+, -, *, /): ");
+string operation = Console.ReadLine();
+double result;
+switch (operation)
+{
+    case "+":
+        result = num1 + num2;
+        Console.WriteLine($"Результат: {num1} + {num2} = {result}");
+        break;
+    case "-":
+        result = num1 - num2;
+        Console.WriteLine($"Результат: {num1} - {num2} = {result}");
+        break;
+    case "*":
+        result = num1 * num2;
+        Console.WriteLine($"Результат: {num1} * {num2} = {result}");
+        break;
+    case "/":
+        if (num2 == 0)
+        {
+            Console.WriteLine("Ошибка: деление на ноль невозможно!");
+            break;
+        }
+        result = num1 / num2;
+        Console.WriteLine($"Результат: {num1} / {num2} = {result}");
+        break;
+    default:
+        Console.WriteLine("Ошибка: неверная операция!");
+        break;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
