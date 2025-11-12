@@ -1,54 +1,14 @@
-﻿using System;
-
-public class ArrayReverser
-{
-    public static void Main(string[] args)
-    {
-        int[] originalArray = { 10, 20, 30, 40, 50 };
-        Console.WriteLine("Исходный массив:");
-        foreach (int element in originalArray)
-        {
-            Console.Write(element + " ");
-        }
-        Console.WriteLine("\n");
-        int[] reversedArray = new int[originalArray.Length];
-        for (int i = 0; i < originalArray.Length; i++)
-        {
-            reversedArray[i] = originalArray[originalArray.Length - 1 - i];
-        }
-        Console.WriteLine("Перевернутый массив:");
-        foreach (int element in reversedArray)
-        {
-            Console.Write(element + " ");
-        }
-        Console.WriteLine();
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+﻿Console.WriteLine("---Калькулятор Индекса Массы Тела(ИМТ)---");
+Console.WriteLine("Введите ваш вес в кг:");
+string firstInput = Console.ReadLine();
+double firstNumber = Convert.ToDouble(firstInput);
+Console.WriteLine("Введите ваш рост в метрах (например 1.75)");
+string secondInput = Console.ReadLine();
+    double secondNumber = Convert.ToDouble(secondInput);
+double quotient = firstNumber / (secondNumber * secondNumber);
+Console.WriteLine("---Ваш результат---");
+Console.WriteLine($"{firstNumber} / ({secondNumber} * {secondNumber}) = {quotient}");
+Console.ReadLine();
 
 
 
